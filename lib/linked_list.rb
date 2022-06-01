@@ -14,17 +14,15 @@ class LinkedList
     else
       temp_node = @head
       temp_node = temp_node.next_node until temp_node.next_node.nil?
-
-      new_node = Node.new
-      new_node.data = value
+      
+      new_node = Node.new(value)
       temp_node.next_node = new_node
     end
   end
 
   def prepend(value)
     # Creates a new instance of the Node class at the beginning of the list
-    new_node = Node.new
-    new_node.data = value
+    new_node = Node.new(value)
     new_node.next_node = @head
     @head = new_node
   end
