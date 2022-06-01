@@ -61,6 +61,9 @@ class LinkedList
 
   def at(index)
     # Returns the value of the node at the given index
+    temp_node = @head
+    index.times { temp_node = temp_node.next }
+    temp_node.data
   end
 
   def pop
