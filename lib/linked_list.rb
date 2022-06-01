@@ -101,11 +101,23 @@ class LinkedList
 
   def remove_at(index)
     # Removes the node at the given index
-    # The pointer from the previous skips to the folowing one
+    # The pointer from the previous skips to the following one
   end
 
   def to_s
     # Prints the LinkedList objects as:
     # ( value ) -> ( value ) -> ( value ) -> nil
+    unless @head.nil?
+      temp_node = @head
+      output = ''
+      until temp_node.nil?
+        output << "#{temp_node.data} -> "
+        temp_node = temp_node.next_node
+      end
+      output << "nil"
+    else
+      output = '-> nil'
+    end
+    output
   end
 end
