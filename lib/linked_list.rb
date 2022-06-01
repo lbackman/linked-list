@@ -31,6 +31,15 @@ class LinkedList
 
   def size
     # Returns the number of node instances in 'this' instance of LinkedList
+    return 0 unless @head
+    
+    count = 1
+    temp_node = @head
+    until temp_node.next_node.nil?
+      temp_node = temp_node.next_node
+      count += 1
+    end
+    count
   end
 
   def head
@@ -40,10 +49,14 @@ class LinkedList
 
   def tail
     # Returns the value of the last node
-    temp_node = @head
-    temp_node = temp_node.next_node until temp_node.next_node.nil?
+    if @head
+      temp_node = @head
+      temp_node = temp_node.next_node until temp_node.next_node.nil?
 
-    temp_node.data
+      temp_node.data
+    else
+      nil
+    end
   end
 
   def at(index)
@@ -71,7 +84,7 @@ class LinkedList
 
   def remove_at(index)
     # Removes the node at the given index
-    # The pointer from the previous skips to the next one
+    # The pointer from the previous skips to the folowing one
   end
 
   def to_s
