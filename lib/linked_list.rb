@@ -62,13 +62,27 @@ class LinkedList
   def at(index)
     # Returns the value of the node at the given index
     temp_node = @head
-    index.times {temp_node = temp_node.next_node}
+    index.times { temp_node = temp_node.next_node }
     temp_node.data
   end
 
   def pop
     # Removes the last node (pointing at null)
     # In effect, removes the pointer and reroutes the pointer before it
+    return "NoMethodError" if @head.nil?
+
+    if @head.next_node.nil?
+      temp_val = @head.data
+      @head = nil
+      return temp_val
+    end
+
+    temp_node = @head
+    temp_node = temp_node.next_node until temp_node.next_node.next_node.nil?
+    
+    temp_val = temp_node.next_node.data
+    temp_node.next_node = nil
+    temp_val
   end
 
   def contains?(value)
