@@ -57,7 +57,6 @@ class LinkedList
 
   def at(index)
     # Returns the value of the node at the given index
-    # Note: does not (yet) work for negative indices
     return nil if index > size - 1 || index < -size
     temp_node = @head
     iter = index.negative? ? size + index : index
