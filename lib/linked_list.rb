@@ -83,8 +83,33 @@ class LinkedList
     temp_val
   end
 
+  def shift
+    # Removes the first element in the list and returns the element
+    # Make head point to @head.next_node.next_node
+    return "NoMethodError" if @head.nil?
+
+    if @head.next_node.nil?
+      temp_val = @head.data
+      @head = nil
+      return temp_val
+    end
+
+    temp_val = @head.data
+    @head = @head.next_node
+    temp_val
+  end
+
   def contains?(value)
     # Returns true/false depending on if the given value is in the list
+    return true if @head.data == value
+
+    temp_node = @head
+    until temp_node.next_node.nil?
+      return true if temp_node.next_node.data == value
+      temp_node = temp_node.next_node
+    end
+
+    false
   end
 
   def find(value)
