@@ -68,7 +68,7 @@ class LinkedList
   def pop
     # Removes the last node (pointing at null)
     # In effect, removes the pointer and reroutes the pointer before it
-    return "NoMethodError" if @head.nil?
+    return "The list is empty." if @head.nil?
 
     if @head.next_node.nil?
       temp_val = @head.data
@@ -87,7 +87,7 @@ class LinkedList
   def shift
     # Removes the first element in the list and returns the element
     # Make head point to @head.next_node.next_node
-    return "NoMethodError" if @head.nil?
+    return "The list is empty." if @head.nil?
 
     if @head.next_node.nil?
       temp_val = @head.data
@@ -150,7 +150,7 @@ class LinkedList
   def remove_at(index)
     # Removes the node at the given index
     # The pointer from the previous skips to the following one
-    return shift if index.zero?
+    return shift if index.zero? || index == -size
 
     return nil if index > size - 1 || index < -size
 
