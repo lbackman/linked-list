@@ -1,7 +1,3 @@
-# lib/linked_list.rb
-
-require 'node'
-
 class LinkedList
   def initialize
     @head = nil
@@ -61,8 +57,11 @@ class LinkedList
 
   def at(index)
     # Returns the value of the node at the given index
+    # Note: does not (yet) work for negative indices
+    return nil if index > size - 1 || index < -size
     temp_node = @head
-    index.times { temp_node = temp_node.next_node }
+    iter = index.negative? ? size + index : index
+    iter.times { temp_node = temp_node.next_node }
     temp_node.data
   end
 
@@ -136,8 +135,11 @@ class LinkedList
     # The pointer before starts pointing to the new node
     return prepend(value) if index.zero?
 
+    return append(value) if index == -1
+
     before_node = @head
-    (index - 1).times { before_node = before_node.next_node }
+    iter = index.negative? ? size + index + 1 : index
+    (iter - 1).times { before_node = before_node.next_node }
     after_node = before_node.next_node
     new_node = Node.new(value)
     new_node.next_node = after_node
@@ -150,8 +152,11 @@ class LinkedList
     # The pointer from the previous skips to the following one
     return shift if index.zero?
 
+    return nil if index > size - 1 || index < -size
+
     before_node = @head
-    (index - 1).times { before_node = before_node.next_node }
+    iter = index.negative? ? size + index : index
+    (iter - 1).times { before_node = before_node.next_node }
     removed_node = before_node.next_node
     value = removed_node.data
     before_node.next_node = before_node.next_node.next_node
