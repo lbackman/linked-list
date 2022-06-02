@@ -19,4 +19,4 @@ The linked list has the following methods:
 - `#remove_at(index)`
 - `#to_s`
 
-Note: The methods that take index as an argument also accepts negative indices.
+Note: The methods that take index as an argument also accept negative indices.
