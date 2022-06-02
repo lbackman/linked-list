@@ -17,6 +17,7 @@ class LinkedList
       
       new_node = Node.new(value)
       temp_node.next_node = new_node
+      value
     end
   end
 
@@ -25,6 +26,7 @@ class LinkedList
     new_node = Node.new(value)
     new_node.next_node = @head
     @head = new_node
+    value
   end
 
   def size
@@ -77,7 +79,7 @@ class LinkedList
 
     temp_node = @head
     temp_node = temp_node.next_node until temp_node.next_node.next_node.nil?
-    
+  
     temp_val = temp_node.next_node.data
     temp_node.next_node = nil
     temp_val
@@ -115,11 +117,32 @@ class LinkedList
   def find(value)
     # If the given value exists, return the index of the first node
     # Else returns nil
+
+    return 0 if @head.data == value
+
+    index = 1
+    temp_node = @head
+    until temp_node.next_node.nil?
+      return index if temp_node.next_node.data == value
+      index += 1
+      temp_node = temp_node.next_node
+    end
+
+    nil
   end
 
   def insert_at(index, value)
     # Inserts a node with the given value at the given index.
     # The pointer before starts pointing to the new node
+    return prepend(value) if index.zero?
+
+    before_node = @head
+    (index - 1).times { before_node = before_node.next_node }
+    after_node = before_node.next_node
+    new_node = Node.new(value)
+    new_node.next_node = after_node
+    before_node.next_node = new_node
+    value
   end
 
   def remove_at(index)
